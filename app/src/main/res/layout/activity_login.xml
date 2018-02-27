@@ -3,45 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    tools:context=".MainActivity">
-
+    android:layout_margin="15dp"
+    tools:context="fr.tgoncalves.webservices.login">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Bienvenue"
+        android:id="@+id/textView"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"/>
+        android:text="Volley User Login System"
+        android:gravity="center"
+        android:layout_marginTop="20dp"/>
 
-    <Button
+    <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire"
+        android:hint="Enter Your Email"
+        android:gravity="center"
+        android:id="@+id/editText_Email"
         android:layout_below="@+id/textView"
-        android:id="@+id/ButtonRegister"
-        android:onClick="subscribe"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Email"
+        android:gravity="center"
+        android:id="@+id/editText_Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/editText_Email"
         android:layout_marginTop="20dp"/>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Se connecter"
-        android:layout_below="@+id/ButtonRegister"
-        android:id="@+id/ButtonConnect"
-        android:onClick="connect"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Afficher les utilisateurs"
-        android:layout_below="@+id/ButtonConnect"
-        android:id="@+id/ButtonShowUsers"
-        android:onClick="showUsers"
+        android:id="@+id/button_login"
+        android:layout_below="@id/editText_Password"
         android:layout_marginTop="20dp"/>
 
 
