@@ -20,9 +20,27 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="Afficher les annonces"
+        android:layout_below="@+id/TextViewUserEmail"
+        android:id="@+id/ButtonShowAds"
+        android:onClick="showUsers"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Publier une annonce"
+        android:layout_below="@+id/ButtonShowAds"
+        android:id="@+id/ButtonPushAd"
+        android:onClick="submitAd"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="LOGOUT"
         android:id="@+id/button_logout"
-        android:layout_below="@+id/TextViewUserEmail"
+        android:layout_below="@+id/ButtonPushAd"
         android:layout_marginTop="50dp"/>
 
 </RelativeLayout>

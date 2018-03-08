@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context="fr.tgoncalves.webservices.submitAd">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EditTextAdTitle"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:hint="Titre de l'annonce"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EditTextAdDesc"
+        android:layout_below="@+id/EditTextAdTitle"
+        android:layout_marginTop="20dp"
+        android:inputType="textMultiLine"
+        android:hint="Description de l'annonce"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EditTextAdPrice"
+        android:layout_below="@+id/EditTextAdDesc"
+        android:layout_marginTop="20dp"
+        android:inputType="number"
+        android:hint="€"
+        android:gravity="center"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Publier mon annonce"
+        android:layout_below="@+id/EditTextAdPrice"
+        android:id="@+id/ButtonSubmitAd"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

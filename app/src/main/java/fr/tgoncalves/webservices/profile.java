@@ -3,7 +3,6 @@ package fr.tgoncalves.webservices;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.LoginFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,12 +20,6 @@ public class profile extends AppCompatActivity {
         textView = (TextView)findViewById(R.id.TextViewUserEmail);
         logout = (Button)findViewById(R.id.button_logout);
 
-        // Receiving value into activity using intent.
-        String TempHolder = getIntent().getStringExtra("UserEmailTAG");
-
-        // Setting up received value into TextView.
-        textView.setText(textView.getText() + TempHolder);
-
         // Adding click listener to logout button.
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,5 +36,17 @@ public class profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void showUsers(View view) {
+        Intent show = new Intent(profile.this, showAds.class);
+        show.putExtra("USERID", getIntent().getStringExtra("USERID"));
+        profile.this.startActivity(show);
+    }
+
+    public void submitAd(View view) {
+        Intent sub = new Intent(profile.this, submitAd.class);
+        sub.putExtra("USERID", getIntent().getStringExtra("USERID"));
+        profile.this.startActivity(sub);
     }
 }

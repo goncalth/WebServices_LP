@@ -4,11 +4,11 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Intent;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,61 +20,62 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class login extends AppCompatActivity {
+public class submitAd extends AppCompatActivity {
 
-    // Creating EditText.
-    EditText Email, Password;
+    EditText Title, Desc, Price;
 
     // Creating button;
-    Button LoginButton;
+    Button Submit;
 
     // Creating Volley RequestQueue.
     RequestQueue requestQueue;
 
     // Create string variable to hold the EditText Value.
-    String EmailHolder, PasswordHolder;
+    String TitleHolder, DescHolder, PriceHolder ;
 
     // Creating Progress dialog.
     ProgressDialog progressDialog;
 
     // Storing server url into String variable.
-    String HttpUrl = "http://android.tgoncalves.fr/userLogin.php";
+    String HttpUrl = "http://android.tgoncalves.fr/submitAd.php";
 
-    Boolean CheckEditText;
+    Boolean CheckEditText ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_submit_ad);
 
         // Assigning ID's to EditText.
-        Email = (EditText) findViewById(R.id.editText_Email);
+        Title = (EditText) findViewById(R.id.EditTextAdTitle);
 
-        Password = (EditText) findViewById(R.id.editText_Password);
+        Desc = (EditText) findViewById(R.id.EditTextAdDesc);
+
+        Price = (EditText) findViewById(R.id.EditTextAdPrice);
 
         // Assigning ID's to Button.
-        LoginButton = (Button) findViewById(R.id.button_login);
+        Submit = (Button) findViewById(R.id.ButtonSubmitAd);
 
         // Creating Volley newRequestQueue .
-        requestQueue = Volley.newRequestQueue(login.this);
+        requestQueue = Volley.newRequestQueue(submitAd.this);
 
         // Assigning Activity this to progress dialog.
-        progressDialog = new ProgressDialog(login.this);
+        progressDialog = new ProgressDialog(submitAd.this);
 
         // Adding click listener to button.
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 CheckEditTextIsEmptyOrNot();
 
-                if (CheckEditText) {
+                if(CheckEditText){
+                    SubmitAdd();
 
-                    UserLogin();
+                }
+                else {
 
-                } else {
-
-                    Toast.makeText(login.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(submitAd.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -83,11 +84,10 @@ public class login extends AppCompatActivity {
 
     }
 
-    // Creating user login function.
-    public void UserLogin() {
+    public void SubmitAdd(){
 
         // Showing progress dialog at user registration time.
-        progressDialog.setMessage("Please Wait");
+        progressDialog.setMessage("Please Wait, We are Inserting Your Data on Server");
         progressDialog.show();
 
         // Creating string request with post method.
@@ -99,21 +99,9 @@ public class login extends AppCompatActivity {
                         // Hiding the progress dialog after all task complete.
                         progressDialog.dismiss();
 
-                        // Matching server response message to our text.
-
-                            // If response matched then show the toast.
-                            Toast.makeText(login.this, "Logged In Successfully", Toast.LENGTH_LONG).show();
-
-                            // Finish the current Login activity.
-                            finish();
-
-                            // Opening the user profile activity using intent.
-                            Intent intent = new Intent(login.this, profile.class);
-
-                            // Sending User Email to another activity using intent.
-                            intent.putExtra("USERID", ServerResponse);
-
-                        startActivity(intent);
+                        // Showing Echo Response Message Coming From Server.
+                        Toast.makeText(submitAd.this, ServerResponse, Toast.LENGTH_LONG).show();
+                        Log.d("ERRORLOG", ServerResponse);
 
                     }
                 },
@@ -125,7 +113,10 @@ public class login extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         // Showing error message if something goes wrong.
-                        Toast.makeText(login.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(submitAd.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+
+                        Log.d("ERRORLOG", volleyError.toString());
+
                     }
                 }) {
             @Override
@@ -136,8 +127,10 @@ public class login extends AppCompatActivity {
 
                 // Adding All values to Params.
                 // The firs argument should be same sa your MySQL database table columns.
-                params.put("user_email", EmailHolder);
-                params.put("user_password", PasswordHolder);
+                params.put("title", TitleHolder);
+                params.put("desc", DescHolder);
+                params.put("price", PriceHolder);
+                params.put("id_user", getIntent().getStringExtra("USERID"));
 
                 return params;
             }
@@ -145,7 +138,7 @@ public class login extends AppCompatActivity {
         };
 
         // Creating RequestQueue.
-        RequestQueue requestQueue = Volley.newRequestQueue(login.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(submitAd.this);
 
         // Adding the StringRequest object into requestQueue.
         requestQueue.add(stringRequest);
@@ -153,22 +146,26 @@ public class login extends AppCompatActivity {
     }
 
 
-    public void CheckEditTextIsEmptyOrNot() {
+    public void CheckEditTextIsEmptyOrNot(){
 
         // Getting values from EditText.
-        EmailHolder = Email.getText().toString().trim();
-        PasswordHolder = Password.getText().toString().trim();
+        TitleHolder = Title.getText().toString().trim();
+        DescHolder = Desc.getText().toString().trim();
+        PriceHolder = Price.getText().toString().trim();
 
         // Checking whether EditText value is empty or not.
-        if (TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)) {
+        if(TextUtils.isEmpty(TitleHolder) || TextUtils.isEmpty(DescHolder) || TextUtils.isEmpty(PriceHolder))
+        {
 
             // If any of EditText is empty then set variable value as False.
             CheckEditText = false;
 
-        } else {
+        }
+        else {
 
             // If any of EditText is filled then set variable value as True.
-            CheckEditText = true;
+            CheckEditText = true ;
         }
     }
+
 }

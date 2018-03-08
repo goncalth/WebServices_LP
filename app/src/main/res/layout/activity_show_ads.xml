@@ -3,17 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.tgoncalves.webservices.showUsers" >
-
-    <Button
-        android:id="@+id/btnObjRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="Make JSON Object Request" />
+    tools:context="fr.tgoncalves.webservices.showAds" >
 
     <Button
         android:id="@+id/btnArrayRequest"
@@ -23,15 +13,28 @@
         android:layout_marginTop="50dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="Make JSON Array Request"
-        android:layout_below="@id/btnObjRequest" />
+        android:text="Afficher toutes les annonces" />
+
+    <Button
+        android:id="@+id/btnMyAds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Gérer mes annonces"
+        android:layout_below="@+id/btnArrayRequest"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:id="@+id/adsList"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/btnMyAds"/>
 
     <TextView
-        android:id="@+id/txtResponse"
-        android:layout_width="fill_parent"
+        android:id="@+id/emptyElem"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnArrayRequest"
-        android:layout_marginTop="40px"
-        android:padding="20dp" />
+        android:layout_width="wrap_content" />
 
 </RelativeLayout>

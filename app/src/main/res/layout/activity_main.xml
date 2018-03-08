@@ -35,14 +35,5 @@
         android:onClick="connect"
         android:layout_marginTop="20dp"/>
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Afficher les utilisateurs"
-        android:layout_below="@+id/ButtonConnect"
-        android:id="@+id/ButtonShowUsers"
-        android:onClick="showUsers"
-        android:layout_marginTop="20dp"/>
-
 
 </RelativeLayout>

@@ -29,11 +29,4 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(sub);
     }
 
-    public void showUsers(View view) {
-        Intent show = new Intent(MainActivity.this, showUsers.class);
-        //sub.putExtra("key", value); //Optional parameters
-        MainActivity.this.startActivity(show);
-    }
-
-
 }
