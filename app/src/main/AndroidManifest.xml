@@ -22,7 +22,8 @@
         <activity android:name=".Subscribe" />
         <activity android:name=".login" />
         <activity android:name=".profile" />
-        <activity android:name=".showUsers"></activity>
+        <activity android:name=".showAds" />
+        <activity android:name=".submitAd" />
     </application>
 
 </manifest>
